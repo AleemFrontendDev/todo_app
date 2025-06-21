@@ -33,15 +33,13 @@ export default function LoginPage() {
       const response = await login(formData.email, formData.password)
       const storage = formData.rememberMe ? localStorage : sessionStorage
       storage.setItem('auth_token', response.token)
-      console.log("Login response: token", response.token)
+      // console.log("Login response: token", response.token)
       
       if (response.user) {
         storage.setItem('user_data', JSON.stringify(response.user))
-        console.log("Login response: user", response.user)
+        // console.log("Login response: user", response.user)
       }
-
-      // FIX: Set auth_token cookie for middleware
-      const maxAge = formData.rememberMe ? 30 * 24 * 60 * 60 : 24 * 60 * 60 // 30 days or 1 day
+      const maxAge = formData.rememberMe ? 30 * 24 * 60 * 60 : 24 * 60 * 60 
       document.cookie = `auth_token=${response.token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure=${window.location.protocol === 'https:'}`
 
       toast({
@@ -125,7 +123,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-gray-200">
+          {/* <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-gray-200">
             <div className="flex items-center space-x-3 mb-4">
               <Shield className="w-6 h-6 text-blue-600" />
               <h3 className="text-lg font-semibold text-gray-900">Trusted by Fortune 500</h3>
@@ -134,7 +132,7 @@ export default function LoginPage() {
               Join thousands of executives who trust our platform to manage their strategic initiatives and drive
               organizational success.
             </p>
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full max-w-md mx-auto">

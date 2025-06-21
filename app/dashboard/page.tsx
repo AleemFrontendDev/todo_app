@@ -659,7 +659,7 @@ export default function EnterpriseTodoDashboard() {
               placeholder="Search todos..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-white border-gray-300"
+              className="bg-white border-gray-300 !h-[38px]"
             />
           </div>
           <Select value={filterStatus} onValueChange={setFilterStatus}>
@@ -689,7 +689,7 @@ export default function EnterpriseTodoDashboard() {
             <TabsList className="bg-gray-100 border-gray-200">
               <TabsTrigger
                 value="todos"
-                className="data-[state=active]:bg-gradient-to-r from-blue-600 to-indigo-600 data-[state=active]:text-white text-gray-700"
+                className="data-[state=active]:bg-gradient-to-r from-blue-600 to-indigo-600 data-[state=active]:text-white text-gray-700 h-[40px]"
               >
                 <Briefcase className="w-4 h-4 mr-2" />
                 Todos

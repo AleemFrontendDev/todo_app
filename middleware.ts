@@ -13,13 +13,13 @@ export default function middleware(request: NextRequest) {
   const hasToken = cookieToken || authHeader
 
   // Debug logging for Vercel (remove in production)
-  console.log('Middleware Debug:', { 
-    path, 
-    hasToken: !!hasToken, 
-    isProtectedRoute, 
-    isPublicRoute,
-    cookieExists: !!cookieToken
-  })
+  // console.log('Middleware Debug:', { 
+  //   path, 
+  //   hasToken: !!hasToken, 
+  //   isProtectedRoute, 
+  //   isPublicRoute,
+  //   cookieExists: !!cookieToken
+  // })
 
   // Redirect root to dashboard if authenticated, login if not
   if (path === '/') {
