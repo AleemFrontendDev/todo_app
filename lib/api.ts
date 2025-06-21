@@ -275,7 +275,7 @@ export async function createTodo(todoData: CreateTodoData): Promise<Todo> {
 
     const response = await fetch(`${API_BASE_URL}/todos`, {
       method: "POST",
-      headers: createHeaders(),
+      headers,
       body,
     })
 
