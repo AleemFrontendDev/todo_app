@@ -33,17 +33,26 @@ export default function LoginPage() {
       const response = await login(formData.email, formData.password)
       const storage = formData.rememberMe ? localStorage : sessionStorage
       storage.setItem('auth_token', response.token)
-       console.log("Login response: token", response.token)
+      console.log("Login response: token", response.token)
+      
       if (response.user) {
         storage.setItem('user_data', JSON.stringify(response.user))
         console.log("Login response: user", response.user)
       }
 
+      // FIX: Set auth_token cookie for middleware
+      const maxAge = formData.rememberMe ? 30 * 24 * 60 * 60 : 24 * 60 * 60 // 30 days or 1 day
+      document.cookie = `auth_token=${response.token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure=${window.location.protocol === 'https:'}`
+
       toast({
         title: "Login Successful",
         description: `Welcome back, ${response.user?.first_name || 'User'}!`,
       })
-      router.push("/app")
+
+      // FIX: Use hard redirect instead of router.push("/")
+      setTimeout(() => {
+        window.location.href = '/dashboard'
+      }, 100)
       
     } catch (error: any) {
       console.error("Login error:", error)
@@ -127,6 +136,7 @@ export default function LoginPage() {
             </p>
           </div>
         </div>
+
         <div className="w-full max-w-md mx-auto">
           <Card className="bg-white/80 backdrop-blur-sm border-gray-200 shadow-xl">
             <CardHeader className="space-y-1 text-center">
