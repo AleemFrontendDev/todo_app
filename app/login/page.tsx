@@ -43,14 +43,10 @@ export default function LoginPage() {
         title: "Login Successful",
         description: `Welcome back, ${response.user?.first_name || 'User'}!`,
       })
-
-      // Redirect to dashboard
-      router.push("/")
+      router.push("/app")
       
     } catch (error: any) {
       console.error("Login error:", error)
-      
-      // Handle different error scenarios
       let errorMessage = "Please check your credentials and try again."
       
       if (error.message.includes("401")) {
@@ -78,7 +74,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Left Side - Branding & Features */}
         <div className="hidden lg:block space-y-8">
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
@@ -132,8 +127,6 @@ export default function LoginPage() {
             </p>
           </div>
         </div>
-
-        {/* Right Side - Login Form */}
         <div className="w-full max-w-md mx-auto">
           <Card className="bg-white/80 backdrop-blur-sm border-gray-200 shadow-xl">
             <CardHeader className="space-y-1 text-center">

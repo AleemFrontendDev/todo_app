@@ -99,10 +99,7 @@ export default function VerifyOtpPage() {
     setIsLoading(true)
 
     try {
-      console.log("🔄 Verifying OTP:", { email, otp: otpCode })
       const response = await verifyOtp(email, otpCode)
-      console.log("✅ OTP verified successfully:", response)
-
       localStorage.removeItem('registration_email')
       
       toast({
@@ -151,9 +148,7 @@ export default function VerifyOtpPage() {
 
     try {
       console.log("🔄 Resending OTP to:", email)
-      await resendOtp(email)
-      console.log("✅ OTP resent successfully")
-      
+      await resendOtp(email)     
       setTimeLeft(300)
       setCanResend(false)
       setOtp(["", "", "", "", "", ""])
